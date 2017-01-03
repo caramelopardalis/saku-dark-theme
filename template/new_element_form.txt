@@ -1,0 +1,37 @@
+{#
+ # Saku Gateway New Element Form.
+ # Copyright (c) 2005-2014 shinGETsu Project.
+ #}
+<div class="row">
+  <div class="col-md-12">
+    <h2>{{message.create}}</h2>
+    <form method="post" action="{{cginame}}">
+      <input type="hidden" name="cmd" value="new" />
+      <input type="hidden" name="file" value="{{datfile}}" />
+      <input type="hidden" value="thread" name="type" />
+
+      <div class="form-group">
+        <label for="link">{{message.title}}</label>
+        <input name="link" maxlength="{{config.title_limit}}" value="" id="link" class="form-control" />
+      </div>
+
+      {% if isadmin %}
+      <div class="form-group">
+        <label for="tag">{{message.tag}}</label>
+        <input name="tag" value="" id="tag" class="form-control" />
+        <span class="help-block">{{message.tag_desc}}</span>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" id="search" name="search_new_file" value="yes" checked="checked" />
+          {{message.search_new_file}}
+        </label>
+      </div>
+      {% endif %}
+
+      <div class="form-actions">
+        <input type="submit" value="{{message.create}}" class="btn btn-primary" />
+      </div>
+    </form>
+  </div>
+</div>

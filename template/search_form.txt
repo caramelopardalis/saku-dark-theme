@@ -1,0 +1,12 @@
+{# Saku Gateway Search Form.
+ # Copyright (c) 2005-2014 shinGETsu Project.
+ #}
+<form method="get" action="{{admin_cgi}}/search">
+  <div class="form-group">
+    <label>{{message.regexp}}</label>
+    <input name="query" class="form-control" size="40" value="{{query}}" />
+  </div>
+  <div class="form-group">
+    <input type="submit" class="btn btn-primary" value="{{message.search}}" />
+  </div>
+</form>

@@ -1,0 +1,67 @@
+{#
+ # Saku Gateway Index List.
+ # Copyright (c) 2005-2014 shinGETsu Project.
+ #}
+{% if target %}
+  <form method="get" action="{{gateway_cgi}}/{{target}}" id="filterform">
+    <div class="form-group">
+      <label for="filterform-filter">{{message.filter}} ({{message.string}})</label>
+      <div class="input-group">
+        <input id="filterform-filter" name="filter" value="{{filter}}" class="form-control" />
+        <span class="input-group-btn">
+          <button class="btn btn-default"><i class="glyphicon glyphicon-search"></i> {{message.show}}</button>
+        </span>
+      </div>
+    </div>
+  </form>
+  <form method="get" action="{{gateway_cgi}}/{{target}}" id="tagform" class="form-search">
+    <div class="form-group">
+      <label for="tagform-tag" >{{message.tag}} ({{message.string}})</label>
+      <div class="input-group">
+        <input id="tagform-tag" name="tag" value="{{tag}}" class="form-control" size="40" />
+        <span class="input-group-btn">
+          <button class="btn btn-default"><i class="glyphicon glyphicon-tag"></i> {{message.show}}</button>
+        </span>
+      </div>
+    </div>
+  </form>
+{% endif %}
+
+{% if isadmin %}
+  <form method="post" action="{{admin_cgi}}">
+  <p><input type="hidden" name="cmd" value="fdel" /></p>
+{% endif %}
+
+{% if target %}
+  <p class="tags">
+  {% for t in taglist %}
+    <a href="{{gateway_cgi}}/{{target}}?tag={{str_encode(t)}}" class="tag label label-default">{{t}}</a>
+  {% endfor %}
+  </p>
+{% endif %}
+
+{% for type in types %}
+  <ul id="{{type}}_index">
+  {% for cache in cachelist %}
+    {% if cache.type == type %}
+      {{make_list_item(cache, target=target, search=search_new_file)}}
+    {% endif %}
+  {% endfor %}
+  </ul>
+{% endfor %}
+{% if (not cachelist) and (isfriend or isadmin) %}
+  <p>{{message.empty_list % (gateway_link(gateway_cgi, 'recent'))}}</p>
+{% endif %}
+
+{% if isadmin %}
+  <p><input type="submit" value="{{message.del_file}}" class="btn btn-warning" /></p>
+  </form>
+{% endif %}
+
+{% if target %}
+  <p><a href="{{gateway_cgi}}/csv/{{target}}/file,stamp,date,path,uri,type,title,records,size,tag,sugtag" class="btn btn-default">CSV</a>
+  {% if target == 'recent' %}
+  <a href="{{gateway_cgi}}/recent_rss" class="btn btn-default">RSS</a>
+  {% endif %}
+  </p>
+{% endif %}

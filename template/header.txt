@@ -1,0 +1,53 @@
+{#-
+ # Saku Gateway Header.
+ # Copyright (c) 2005-2014 shinGETsu Project.
+ -#}
+Content-Type: text/html; charset=UTF-8
+{%-if cookie %}
+{{cookie}}
+{%- endif %}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+  lang="{{message.lang}}" xml:lang="{{message.lang}}">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <title>{{title}}</title>
+{% if deny_robot %}
+  <meta name="robots" content="NOINDEX" />
+{% endif %}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="author" href="http://www.shingetsu.info/" />
+  <link rel="contents" href="/" />
+  <link rel="index" href="{{root_path}}gateway.cgi/index" />
+  <script type="text/javascript" src="{{root_path}}jquery/jquery.min.js?{{dummyquery}}"></script>
+  <script type="text/javascript" src="{{root_path}}jquery/jquery.lazy.min.js?{{dummyquery}}"></script>
+  <script type="text/javascript" src="{{root_path}}bootstrap/js/bootstrap.min.js?{{dummyquery}}"></script>
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="{{rss}}" />
+  <link rel="stylesheet" type="text/css" href="{{root_path}}bootstrap/css/bootstrap.min.css?{{dummyquery}}" />
+  <link rel="stylesheet" type="text/css" href="{{root_path}}bootstrap/css/main.css?{{dummyquery}}" />
+{%- for e in js %}
+  <script type="text/javascript" src="{{root_path}}{{e}}?{{dummyquery}}"></script>
+{%- else %}
+  <script type="text/javascript" src="{{root_path}}gateway.cgi/mergedjs?{{mergedjs.mtime}}"></script>
+{%- endfor %}
+{%- for e in css %}
+  <link rel="stylesheet" type="text/css" href="{{root_path}}{{e}}?{{dummyquery}}" />
+{%- endfor %}
+  <script type="text/javascript">//<![CDATA[
+    shingetsu.rootPath = "{{root_path}}";
+    shingetsu.dummyQuery = "{{dummyquery}}";
+    shingetsu.uiLang = "{{message.lang}}";
+  //]]></script>
+</head>
+<body>
+{{menubar}}
+<div class="container">
+
+  <div class="page-header">
+{% if cgi.appli_type == 'thread' %}
+    <h1><a href="{{thread_cgi}}/{{str_title}}">{{escape_space(title)}}</a></h1>
+{% else %}
+    <h1><a href="">{{escape_space(title)}}</a></h1>
+{% endif %}
+  </div>

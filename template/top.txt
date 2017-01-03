@@ -1,0 +1,56 @@
+{# Saku Gateway Toppage.
+ # Copyright (c) 2005-2015 shinGETsu Project.
+ #}
+<section id="top_index">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>{{message.recent_changes}}</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <ul>
+{% for cache in cachelist %}
+  {% if cache.type in types %}
+    {{make_list_item(cache, remove=False, target=target)}}
+  {% endif %}
+{% endfor %}
+      </ul>
+    </div>
+  </div>
+{% if (not cachelist) and (isfriend or isadmin) %}
+  <div class="row">
+    <div class="col-md-12">
+      <p>{{message.empty_list % (gateway_link(gateway_cgi, 'recent'))}}</p>
+    </div>
+  </div>
+{% endif %}
+</section>
+
+{% if taglist %}
+<nav class="tags">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>{{message.tag}}</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+  {% for t in taglist %}
+      <a href="{{gateway_cgi}}/{{target}}?tag={{str_encode(t)}}" class="tag label label-default">{{t}}</a>
+  {% endfor %}
+    </div>
+  </div>
+</nav>
+{% endif %}
+
+{% if mch_url %}
+  <h2>{{message.mch_categories}}</h2>
+  <ul class="topmenu">
+    <li><a href="{{mch_url}}">{{message.all}}</a></li>
+  {% for category in mch_categories %}
+    <li><a href="{{category.url}}">{{category.text}}</a></li>
+  {% endfor %}
+  </ul>
+{% endif %}
+

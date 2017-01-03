@@ -1,0 +1,118 @@
+/*
+ * General
+ */
+
+html {
+    background-color: #2b2b2b;
+}
+
+/* List padding */
+#top_index li,
+#thread_index li,
+#records th,
+#records td,
+.status-summary td,
+.status-list li {
+    padding-top: .3em;
+    padding-bottom: .3em;
+}
+
+/* Disable list style */
+#top_index ul,
+#thread_index,
+.status-list {
+    list-style-type: none;
+}
+
+/* Tag */
+.tags,
+.sugtags {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    vertical-align: text-bottom;
+}
+.row-tags-admin {
+    margin-top: 7.5px;
+}
+.sugtag {
+    color: #6c6c6c;
+    background-color: #484844;
+}
+.label.sugtag:hover {
+    color: #6c6c6c;
+    background-color: #41413c;
+}
+
+/* Header */
+.navbar .container-fluid .navbar-header .navbar-brand {
+    margin-left: 0;
+}
+
+/* Footer */
+footer {
+    margin-top: 45px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-color: #2b2b2b;
+}
+footer .address {
+    margin-bottom: 0;
+    text-align: center;
+}
+
+/*
+ * Thread
+ */
+
+/* Margin outside the res */
+#records dt,
+#records dd {
+    margin-left: -2em;
+    margin-right: -2em;
+    padding-left: 2em;
+    padding-right: 2em;
+}
+#records dt {
+    padding-top: 1em;
+}
+#records dd {
+    padding-bottom: 3em;
+}
+
+/* Margin in res */
+.popup dd,
+#records dd {
+    padding-top: .5em;
+}
+
+/* Res header margin */
+.popup dt input[type=checkbox][name="record"],
+.popup dt a.id,
+.popup dt .name,
+.popup dt .stamp,
+.popup dt a,
+#records dt input[type=checkbox][name="record"],
+#records dt a.id,
+#records dt .name,
+#records dt .stamp,
+#records dt a {
+    margin-right: .5em;
+}
+
+/* Popup */
+.popup .panel {
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+}
+
+/*
+ * Status
+ */
+.status-summary {
+    margin-left: 40px;
+}
+.status-summary th {
+    padding-right: 7.5px;
+}
+.status-summary td {
+    padding-left: 7.5px;
+}

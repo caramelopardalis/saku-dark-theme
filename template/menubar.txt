@@ -1,0 +1,43 @@
+{# Saku Gateway Menubar.
+ # Copyright (c) 2005-2015 shinGETsu Project.
+ #}
+{% if id %}
+<nav class="navbar navbar-inverse" id="{{id}}">
+{% else %}
+<nav class="navbar navbar-inverse">
+{% endif %}
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="{{gateway_cgi}}">{{message.top}}</a>
+  </div>
+
+  <div id="navbar-collapse" class="collapse navbar-collapse">
+    <ul class="nav navbar-nav">
+{% for i in ('changes', 'index') %}
+      <li>{{gateway_link(gateway_cgi, i)}}</li>
+{% endfor %}
+{% if isfriend or isadmin %}
+  {% for i in ('recent', 'new') %}
+      <li>{{gateway_link(gateway_cgi, i)}}</li>
+  {% endfor %}
+{% endif %}
+{% if isadmin %}
+  {% for i in ('search', 'status') %}
+      <li>{{gateway_link(admin_cgi, i)}}</li>
+  {% endfor %}
+{% endif %}
+      <li><a href="http://www.shingetsu.info/">{{message.site}}</a></li>
+      <li><a href="{{gateway_cgi}}/motd">{{message.agreement}}</a></li>
+{% if mch_url %}
+      <li><a href="{{mch_url}}">{{message.mch}}</a></li>
+{% endif %}
+      <li><a href="{{rss}}">{{message.rss}}</a></li>
+    </ul>
+  </div>
+</nav>

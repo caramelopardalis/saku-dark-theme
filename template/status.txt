@@ -1,0 +1,19 @@
+{# Saku Gateway Status Page.
+ # Copyright (c) 2005-2014 shinGETsu Project.
+ #}
+<table summary="{{message.status}}" class="status-summary">
+{% for p in status %}
+  <tr>
+  	<th>{{message[p[0]]}}</th>
+  	<td>{{p[1]}}</td>
+  </tr>
+{% endfor %}
+</table>
+{% for p in node_status %}
+<h2>{{message[p[0]]}}</h2>
+<ul class="status-list">
+  {% for node in p[1] %}
+  <li>{{node}}</li>
+  {% endfor %}
+</ul>
+{% endfor %}

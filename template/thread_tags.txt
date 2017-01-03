@@ -1,0 +1,20 @@
+{#
+ # Saku Gateway Thread Tags.
+ # Copyright (c) 2007-2014 shinGETsu Project.
+ #}
+<nav class="{{classname}}">
+  <div class="row row-tags">
+    <div class="col-md-12">
+{% for tag in tags %}
+      <a href="{{gateway_cgi}}/{{target}}?tag={{str_encode(tag)}}" class="tag label label-default">{{tag}}</a>
+{% endfor %}
+    </div>
+  </div>
+{% if (classname == 'tags') and isadmin %}
+  <div class="row row-tags-admin">
+    <div class="col-md-12">
+      <a href="{{admin_cgi}}/edittag?file={{cache.datfile}}" class="btn btn-default">{{message.edit_tag}}</a>
+    </div>
+  </div>
+{% endif %}
+</nav>
